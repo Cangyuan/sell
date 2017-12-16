@@ -21,6 +21,7 @@
 <script>
 import header from '@/components/header/header'
 import {urlParse} from '@/common/js/util'
+import data from '@/common/data/data.json'
 const ERR_OK = 0
 
 export default {
@@ -36,13 +37,15 @@ export default {
       }
   },
   created() {
-    this.$http.get('/api/seller?id=' + this.seller.id)
-    .then(response => {
-      if (response.data.error === ERR_OK) {
-        this.seller = Object.assign({}, this.seller, response.data.data);
-      }
+    //this.$http.get('/api/seller?id=' + this.seller.id)
+    // .then(response => {
+    //   if (response.data.error === ERR_OK) {
+    //     this.seller = Object.assign({}, this.seller, response.data.data);
+    //   }
            
-    })
+    // })
+    this.seller = Object.assign({}, this.seller, data.seller);
+    console.log(data)
   },
   components: {
       'v-header': header

@@ -61,6 +61,7 @@
     import star from '@/components/star/star';
     import BScroll from 'better-scroll';
     import Bus from '@/common/js/eventBus';
+    import data from '@/common/data/data.json';
 
     const POSITIVE = 0;
     const NEGATIVE = 1;
@@ -85,17 +86,24 @@
             };
         },
         created() {
-            this.$http.get('/api/ratings').then((response) => {
-                response = response.data;
-                if (response.error === ERR_OK) {
-                    this.ratings = response.data;
-                    this.$nextTick(() => {
-                        this.scroll = new BScroll(this.$refs.ratings, {
-                            click: true
-                        });
-                    });
-                }
+            // this.$http.get('/api/ratings').then((response) => {
+            //     response = response.data;
+            //     if (response.error === ERR_OK) {
+            //         this.ratings = response.data;
+            //         this.$nextTick(() => {
+            //             this.scroll = new BScroll(this.$refs.ratings, {
+            //                 click: true
+            //             });
+            //         });
+            //     }
+            // });
+            this.ratings = data.ratings;
+            this.$nextTick(() => {
+                this.scroll = new BScroll(this.$refs.ratings, {
+                    click: true
+                });
             });
+
              //获取子组件的selectType的更新
             Bus.$on('ratingtype.select', selectType => {
                 this.selectType = selectType;

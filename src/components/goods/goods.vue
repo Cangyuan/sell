@@ -47,6 +47,7 @@
   import cartcontrol from '@/components/cartcontrol/cartcontrol';
   import food from '@/components/food/food';
   import Bus from '@/common/js/eventBus';
+  import data from '@/common/data/data.json';
 	const ERR_OK = 0;
 	export default {
 		props: {
@@ -63,15 +64,20 @@
             };
         },
         created() {
-            this.$http.get('/api/goods').then((response) => {
-                if (response.data.error === ERR_OK) {   
-                    this.goods = response.data.data;         
-                    //DOM 更新了 操作dom时一定要在$nextTick里
-                    this.$nextTick(() => {
-                       this._initScroll();
-                       this._calculateHeight();
-                    }); 
-                }
+            // this.$http.get('/api/goods').then((response) => {
+            //     if (response.data.error === ERR_OK) {   
+            //         this.goods = response.data.data;         
+            //         //DOM 更新了 操作dom时一定要在$nextTick里
+            //         this.$nextTick(() => {
+            //            this._initScroll();
+            //            this._calculateHeight();
+            //         }); 
+            //     }
+            // });
+            this.goods = data.goods;
+            this.$nextTick(() => {
+               this._initScroll();
+               this._calculateHeight();
             });
             this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 
