@@ -1,6 +1,6 @@
 # sell
 
-> A Vue.js project
+> 仿饿了么[演示地址](https://cangyuan.github.io/sell)
 
 ## Build Setup
 
